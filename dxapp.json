@@ -1,0 +1,99 @@
+{
+  "name": "str_case_control",
+  "title": "str_case_control",
+  "summary": "Run a case-control str gwas using joint analysis",
+  "dxapi": "1.0.0",
+  "version": "0.0.1",
+  "inputSpec": [
+    {
+      "name": "vcf_file",
+      "class": "file",
+      "optional": false,
+      "help": ""
+    },
+    {
+      "name": "vcf_file_index",
+      "class": "file",
+      "optional": false,
+      "help": ""
+    },
+    {
+      "name": "chr",
+      "class": "string",
+      "optional": false,
+      "help": ""
+    },
+    {
+      "name": "min_ac",
+      "class": "int",
+      "optional": false,
+      "help": ""
+    },
+    {
+      "name": "covar_pheno",
+      "class": "file",
+      "optional": false,
+      "help": ""
+    },
+    {
+      "name": "output_folder",
+      "class": "string",
+      "optional": true,
+      "default": "\"\"",
+      "help": ""
+    },
+    {
+      "name": "project",
+      "class": "string",
+      "optional": true,
+      "default": "\"\"",
+      "help": ""
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "merged_results",
+      "class": "file",
+      "patterns": [
+        "*"
+      ],
+      "help": ""
+    }
+  ],
+  "runSpec": {
+    "execDepends": [
+        {"name": "bcftools"},
+        {"name": "tabix"},
+        {"name": "r-base"},
+        {"name": "dplyr", "package_manager": "cran"},
+        {"name": "purrr", "package_manager": "cran"},
+        {"name": "stringr", "package_manager": "cran"},
+        {"name": "tidyr", "package_manager": "cran"},
+        {"name": "data.table", "package_manager": "cran"},
+        {"name": "reshape2", "package_manager": "cran"},
+        {"name": "brglm2", "package_manager": "cran"}
+    ],
+    "timeoutPolicy": {
+      "*": {
+        "hours": 48
+      }
+    },
+    "interpreter": "bash",
+    "release": "20.04",
+    "distribution": "Ubuntu",
+    "file": "src/str_case_control.sh",
+    "version": "0"
+  },
+  "access": {"network": ["*"],
+    "project": "CONTRIBUTE"
+  },
+  "regionalOptions": {
+    "aws:eu-west-2": {
+      "systemRequirements": {
+        "*": {
+          "instanceType": "mem3_ssd2_v2_x2"
+        }
+      }
+    }
+  }
+}
