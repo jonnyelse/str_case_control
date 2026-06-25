@@ -22,7 +22,7 @@ cases_ids <- cases_covar$IID
 controls_covar <- covar_pheno %>% filter(disease_status == 0)
 controls_ids <- controls_covar$IID
 
-# Helper: round numbers for output tables
+# round numbers for output tables
 custom_round <- function(x, significant_digits = 4) {
   # Rounds numbers with flexible decimal points for clarity in output
   if (length(x) > 1) {
@@ -36,7 +36,7 @@ custom_round <- function(x, significant_digits = 4) {
   round(x, digits = digits)
 }
 
-# Helper: determine which alleles (columns) should be grouped due to low count
+# determine which alleles (columns) should be grouped due to low count
 low_cols <- function(locus_data, alt_colnames){
   # Splits samples into case/control, counts alleles, and returns columns to group
   cases_locus_data <- locus_data %>% filter(IID %in% cases_ids)
@@ -91,7 +91,7 @@ low_cols <- function(locus_data, alt_colnames){
   }
 }
 
-# Core: perform regression for each group of alleles at a locus
+# perform regression for each group of alleles at a locus
 process_and_regress <- function(genotype_chunk, covar_pheno, no_alts) {
   # For a chunk of variants (locus), run logistic regression for each variant/allele group
   print("running progress and regress")
@@ -291,7 +291,7 @@ process_and_regress <- function(genotype_chunk, covar_pheno, no_alts) {
   return(results_df)
 }
 
-# Main: iterate over each variant grouping file and run association tests
+# iterate over each variant grouping file and run association tests
 directory <- "QC"
 pattern = "_alt_alleles\\.txt$"
 
