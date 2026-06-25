@@ -1,6 +1,6 @@
 # str_case_control
 
-**str_case_control** is a DNAnexus applet for the UK Biobank Research Analysis Platform (RAP) designed to perform a case-control Short Tandem Repeat (STR) Genome-Wide Association Study (GWAS) using joint analysis. It automates the process of extracting and modeling STR genotype data for binary phenotypes, leveraging both bash and R for efficient, large-scale analysis on biobank data.
+**str_case_control** is a DNAnexus applet for the UK Biobank Research Analysis Platform (RAP) designed to perform a case-control Short Tandem Repeat (STR) Genome-Wide Association Study (GWAS) using joint analysis (jiang et al., 2020). It automates the process of extracting and modeling STR genotype data for binary phenotypes, using both bash and R for efficient, large-scale analysis on biobank data.
 
 ---
 
@@ -89,13 +89,9 @@ The output TSV (`merged_results`) contains:
 ## Notes
 
 - Multi-allelic STRs are handled via allele grouping and merging where necessary.
-- **Low allele count variants are grouped together, not filtered out.** Only monomorphic variants (variants with no observed polymorphism in the data) are filtered out of the association analysis.
+- **Low allele count variants are grouped together, not filtered out.** Only monomorphic variants (variants with no observed polymorphism in the data) are filtered out of the association analysis. Alleles with counts below the user-defined minimum allele count are combined into a single category. This reduces instability in maximum-likelihood estimation caused by sparse observations while retaining information from rare alleles.
 
----
 
-## Citation
-
-If you use this applet, please cite the UK Biobank and any relevant STR GWAS or software references.
 
 ---
 
@@ -103,14 +99,6 @@ If you use this applet, please cite the UK Biobank and any relevant STR GWAS or 
 
 - [jonnyelse](https://github.com/jonnyelse)
 
----
 
-## License
 
-Add your license here (e.g., MIT, GPL-3.0, etc.)
 
----
-
-## Contributing
-
-Contributions and suggestions are welcome; please open an issue or submit a pull request.
